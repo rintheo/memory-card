@@ -1,24 +1,29 @@
-import '../styles/App.css';
+import { useEffect, useState } from 'react';
 import CardsContainer from './CardsContainer';
+import Score from './Score';
+import '../styles/App.css';
 
 function App() {
+  const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
+
+  useEffect(() => {
+    if (score >= bestScore) {
+      setBestScore(score);
+    }
+  }, [score, bestScore]);
+
   return (
     <>
       <div className="header">
         <div className="max-width">
           <h1>Meowmory</h1>
-          <div className="score">
-            <h2>SCORE</h2>
-            <p>0</p>
-          </div>
-          <div className="score">
-            <h2>BEST</h2>
-            <p>0</p>
-          </div>
+          <Score label="SCORE" score={score} />
+          <Score label="BEST" score={bestScore} />
           <button type="button" className="home-button" alt="Home" />
         </div>
       </div>
-      <CardsContainer />
+      <CardsContainer setScore={setScore} />
     </>
   );
 }

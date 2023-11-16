@@ -1,6 +1,9 @@
 import cardBackground from '../assets/card.jpg';
 
-export default function Card({ cat }) {
+export default function Card({
+  cat,
+  handleClick,
+}) {
   const background = cat === null
     ? {}
     : { backgroundImage: `url("${cat.url}")` };
@@ -11,10 +14,14 @@ export default function Card({ cat }) {
   }
 
   return (
-    <div
+    <button
+      type="button"
       className={className}
       style={background}
-    />
+      onClick={handleClick}
+    >
+      {}
+    </button>
   );
 }
 
