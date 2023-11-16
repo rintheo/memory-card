@@ -1,45 +1,5 @@
 import '../styles/App.css';
-import Card from './Card';
-import homeSVG from '../assets/home.svg';
-
-const tempCats = [
-  {
-    id: 'hsyTGG9ihjVVAbsC',
-  },
-  {
-    id: 'hsyTGG9ihjVVAbsC',
-  },
-  {
-    id: 'hsyTGG9ihjVVAbsC',
-  },
-  {
-    id: 'hsyTGG9ihjVVAbsC',
-  },
-  {
-    id: 'hsyTGG9ihjVVAbsC',
-  },
-  {
-    id: 'hsyTGG9ihjVVAbsC',
-  },
-  {
-    id: 'hsyTGG9ihjVVAbsC',
-  },
-  {
-    id: 'hsyTGG9ihjVVAbsC',
-  },
-  {
-    id: 'hsyTGG9ihjVVAbsC',
-  },
-  {
-    id: 'hsyTGG9ihjVVAbsC',
-  },
-  {
-    id: 'hsyTGG9ihjVVAbsC',
-  },
-  {
-    id: 'hsyTGG9ihjVVAbsC',
-  },
-];
+import CardsContainer from './CardsContainer';
 
 function App() {
   return (
@@ -58,11 +18,7 @@ function App() {
           <button type="button" className="home-button" alt="Home" />
         </div>
       </div>
-      <div className="cards-container">
-        {tempCats.map((cat) => (
-          <Card key={cat.id} cat={cat} />
-        ))}
-      </div>
+      <CardsContainer />
     </>
   );
 }

@@ -12,6 +12,12 @@
   max-width: 1280px;
 }
 
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .header > .max-width {
   width: 100%;
   padding: 1rem;
@@ -73,13 +79,70 @@
 }
 
 .card {
-  background-color: grey;
+  background-color: rgba(255, 255, 255, 0.65);
   background-size: cover;
   background-position: center;
-  /* background-image: url('../assets/card.jpg'); */
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+  transform: perspective(2000px) rotate3d(0, 1, 0, 0deg);
+  will-change: transform;
+  transition: transform 0.125s ease-in-out 0s;
+}
+
+.card:hover:not(.loading) {
+  transform: scale(1.1);
+  z-index: 1;
+  /* animation: change-card 1s ease-in-out 0s 1 forwards normal; */
+}
+
+.card:active:not(.loading) {
+  transform: scale(1.125);
+}
+
+.card.loading {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.65) 0%, 
+    rgba(255, 255, 255, 0.65) 25%, 
+    rgba(215, 237, 255, 0.651) 50%, 
+    rgba(255, 255, 255, 0.65) 75%, 
+    rgba(255, 255, 255, 0.65) 100%); 
+  background-size: 200%;
+  animation: loading 0.5s ease-in-out 0s infinite forwards alternate;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+@keyframes change-card {
+  0% {
+    transform: perspective(2000px) rotate3d(0, 1, 0, 0deg);
+  }
+
+  25% {
+    transform: perspective(2000px) rotate3d(0, 1, 0, 90deg);
+  }
+
+  50% {
+    transform: perspective(2000px) rotate3d(0, 1, 0, 180deg);
+    background-image: url('../assets/card.jpg');
+  }
+
+  75% {
+    transform: perspective(2000px) rotate3d(0, 1, 0, 270deg);
+  }
+
+  100% {
+    transform: perspective(2000px) rotate3d(0, 1, 0, 360deg);
+  }  
 }
 
 @media (max-width: 600px) {
