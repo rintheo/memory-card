@@ -1,9 +1,11 @@
+import { useState, useEffect } from 'react';
 import cardBackground from '../assets/card.jpg';
 
 export default function Card({
   cat,
   handleClick,
 }) {
+  const [entry, setEntry] = useState(true);
   const background = cat === null
     ? {}
     : { backgroundImage: `url("${cat.url}")` };
@@ -11,6 +13,8 @@ export default function Card({
   let className = 'card';
   if (cat === null) {
     className += ' loading';
+  } else if (entry) {
+    className += ' entry';
   }
 
   return (
@@ -18,7 +22,8 @@ export default function Card({
       type="button"
       className={className}
       style={background}
-      onClick={handleClick}
+      onClick={() => { if (!entry) { handleClick(); } }}
+      onAnimationEnd={() => { setEntry(false); }}
     >
       {}
     </button>

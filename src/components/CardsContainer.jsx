@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
-import shuffle from './shuffle';
+import shuffle from './helpers/shuffle';
 import Card from './Card';
 
 const apiKey = 'live_DrzAArmmLfLJRDOXlEwmHUxHNA3qkF4Ih9jyzZihhyNptWI7tUl0uWYhZp7X5aMs';
 
 export default function CardsContainer({
+  score,
   setScore,
 }) {
   const [cats, setCats] = useState(null);
   const [selectedCats, setSelectedCats] = useState([]);
-  console.log(selectedCats);
 
   const fetchData = async () => {
     const response = await fetch(`https://api.thecatapi.com/v1/images/search?limit=12&api_key=${apiKey}`)
@@ -33,7 +33,6 @@ export default function CardsContainer({
   };
 
   useEffect(() => {
-    console.log('Fetched cats.');
     fetchData();
     return () => {
       setCats(null);
@@ -49,7 +48,7 @@ export default function CardsContainer({
           )))
           : (cats.map((cat) => (
             <Card
-              key={cat.id}
+              key={cat.id + score}
               cat={cat}
               handleClick={(e) => { handleClick(e, cat.id); }}
             />

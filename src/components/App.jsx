@@ -20,10 +20,11 @@ function App() {
           <h1>Meowmory</h1>
           <Score label="SCORE" score={score} />
           <Score label="BEST" score={bestScore} />
-          <button type="button" className="home-button" alt="Home" />
+          <div />
+          {/* <button type="button" className="home-button" alt="Home" /> */}
         </div>
       </div>
-      <CardsContainer setScore={setScore} />
+      <CardsContainer score={score} setScore={setScore} />
     </>
   );
 }
